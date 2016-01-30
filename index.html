@@ -3,7 +3,7 @@
 <head>
 <title>Morning Talk</title>
 <link rel="stylesheet" type="text/css" href='assets/css/style.css'/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="assets/js/script.js"></script>
 </head>
 <body>
@@ -18,10 +18,13 @@
   <span class='segundo'>Talk</span>
 </h1>
 
-<div class='btn cronometro'>
-01:00
+<div class='content'>
+  <div class='btn cronometro'>
+    <span id='minuto'>01</span>:<span id='segundo'>00</span>
+  </div>
+  <div class='btn proximo'>Proximo</div>
+  <div id='keynote'>KeyNote</div>
 </div>
-<div class='btn proximo'>Proximo</div>
 
 <img class='bar footer' src='assets/img/bar.jpg'>
 
