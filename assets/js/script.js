@@ -84,4 +84,12 @@ $(document).ready(function () {
     pausar(start, mins, paused);
   });
 
+  $(window).keypress(function (e) {
+    if (e.keyCode === 0 || e.keyCode === 32) {
+      e.preventDefault()
+      $(".proximo").click();
+    }
+  })
+  
+
 });
