@@ -5,7 +5,7 @@ $(document).ready(function () {
       outMins     = 0,
       outSecs     = 0,
       paused      = false;
-  
+
   function start() {
     timerInterv = window.setInterval(doCountDown, 1000);
   }
@@ -17,10 +17,10 @@ $(document).ready(function () {
       outMins = outSecs = 0;
 
       clearInterval(timerInterv);
-      
+
       $("#segundo").html("00");
       $(".cronometro").addClass("danger tada");
-      
+
       return;
     }
 
@@ -31,21 +31,21 @@ $(document).ready(function () {
     $("#segundo").html(outSecs);
   }
 
-  function zerar(callback, definedMins) {   
+  function zerar(callback, definedMins , definedSecs) {
     var setMins = definedMins || mins;
 
     window.clearInterval(timerInterv);
 
     $("#minuto").text('0' + setMins);
-    $("#segundo").text('00');
+    $("#segundo").text(definedSecs);
     $(".cronometro").removeClass("danger tada");
     $(".cronometro").removeClass("paused");
 
     paused = false;
-    secs    = mins * 60;
+    secs    = mins * 60 + parseFloat(definedSecs);
     outSecs = outMins = 0;
 
-    
+
     callback();
   }
 
@@ -68,14 +68,13 @@ $(document).ready(function () {
 
   $("#keynote").click(function(){
     mins = 5;
-
-    zerar(start, mins);
+    zerar(start, mins , "00");
   });
 
   $(".proximo").click(function () {
     mins = 1;
 
-    zerar(start, mins);
+    zerar(start, mins , "00");
   });
 
    $(".cronometro").click(function () {
@@ -84,12 +83,27 @@ $(document).ready(function () {
     pausar(start, mins, paused);
   });
 
+  function seconds(s){
+    mins =  Math.floor(s/60);
+    s = (s%60);
+
+    zerar(start, mins, s);
+  }
+
   $(window).keypress(function (e) {
+
     if (e.keyCode === 0 || e.keyCode === 32) {
-      e.preventDefault()
       $(".proximo").click();
     }
+    if (e.keyCode === 109) {
+      seconds(30);
+    }
+    if (e.keyCode === 107) {
+      $("#keynote").click();
+    }
+
+    e.preventDefault()
   })
-  
+
 
 });
